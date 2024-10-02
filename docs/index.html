@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PreciseControl : Enhancing Text-to-Image Diffusion Models with Fine-Grained Attribute Control">
+  <meta name="keywords" content="Diffusion Models, Personalization, Editing, Text-to-Image, Control">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PreciseControl</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./images/einstein-logo.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PreciseControl : Enhancing Text-to-Image Diffusion Models with Fine-Grained Attribute Control</h1>
+          <h1 class="title is-2 conference-title">ECCV 2024</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://rishubhpar.github.io/">Rishubh Parihar</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/sachidanand-v-s-449573201/">Sachidanand V S</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/sabariswaran-mani-48b8b522a/">Sabariswaran Mani</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://tejank10.github.io/">Tejan Karmali</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cds.iisc.ac.in/faculty/venky/">R. Venkatesh Babu</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Vision and AI Lab, Indian Institute of Science,</span>
+            <span class="author-block"><sup>2</sup>Indian Institute of Technology, Kharagpur</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2408.05083"                       // change
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+
+              </span>
+              <span class="link-block">
+              <a href="./PreciseControl_arXiv.pdf" 
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+              <span>Paper</span>
+                </a>
+              </span> 
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://rishubhpar.github.io/PreciseControl.home/"                       // change
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (Coming soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/rishubhpar/PreciseControl"                        // change
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./images/teaser-fig.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+      <h2 class="subtitle has-text-centered">
+        We enable precise attribute control in Text-to-Image Generation by combining Diffusion Models and StyleGANs
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 18px;">
+          Recently, we have seen a surge of personalization methods for text-to-image (T2I) diffusion models to learn a concept using a few images. Existing approaches, when used for face personalization, suffer to achieve convincing inversion with identity preservation and rely on semantic text-based editing of the generated face. However, a more fine-grained control is desired for facial attribute editing, which is challenging to achieve solely with text prompts. In contrast, StyleGAN models learn a rich face prior and enable smooth control towards fine-grained attribute editing by latent manipulation. This work uses the disentangled <em>W<sup>+</sup></em> space of StyleGANs to condition the T2I model. This approach allows us to precisely manipulate facial attributes, such as smoothly introducing a smile, while preserving the existing coarse text-based control inherent in T2I models. To enable conditioning of the T2I model on the <em>W<sup>+</sup></em> space, we train a latent mapper to translate latent codes from <em>W<sup>+</sup></em> to the token embedding space of the T2I model. The proposed approach excels in the precise inversion of face images with attribute preservation and facilitates continuous control for fine-grained attribute editing. Furthermore, our approach can be readily extended to generate compositions involving multiple individuals. We perform extensive experiments to validate our method for face personalization and fine-grained attribute editing.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+<!--     <div class="columns is-centered has-text-centered"> -->
+<!--       <div class="column is-four-fifths"> -->
+<!--         <h2 class="title is-3">Video</h2> -->
+<!--         <div class="publication-video"> -->
+<!--           <iframe src="" -->
+<!--                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <style>
+    img {
+      -drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+   }
+  </style>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Personalization</h2>
+    </div>
+    <div class="content has-text-justified" >
+      <!-- <h3 class="title is-3">Key idea</h3> -->
+      <p style="font-size: 18px;"><br>Given a single portrait image, we extract its <i>w</i> latent representation from encoder <i>E</i><sub>GAN</sub>. The latent <i>w</i> along with diffusion timestep <i>t</i> are passed through the latent adaptor <i>M</i> to generate a pair of time-dependent token embeddings (<i>v</i><sub><i>t</i></sub><sup>1</sup>, <i>v</i><sub><i>t</i></sub><sup>2</sup>) representing the input subject. Finally, the token embeddings are combined with arbitrary prompts to generate customized images.</p>
+      <br>
+      <img src="./images/proposed-framework.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+      <br>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- Personalization clickable -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <style>
+    img {
+      width:100%;
+   }
+   .clickable-area {
+            cursor: pointer;
+        }
+  </style>
+    <h3 class="title is-4">Click to send your pal on a virtual vacation.</h2>
+    <div class="content">
+      <!-- <h3 class="title is-3">Key idea</h3> -->
+      <img src="./images/personalization/personalization-tweeter-9.gif" alt="personalization" usemap="#workmapb" id="mainImageb" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999;">
+      <!-- style="transform: translate(45px,0px);" -->
+      <map name="workmapb">
+        <area id="rect1b" shape="rect" coords="26, 26, 218, 216" alt="rect1b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-00-blur.png')">
+        <area id="rect2b" shape="rect" coords="231,26, 423, 216" alt="rect2b" class="clickable-area" onclick="changeImage2('./images/personalization/pers-01-blur.png')">
+        <area id="rect3b" shape="rect" coords="438, 26, 627, 216" alt="rect3b" class="clickable-area" onclick="changeImage2('./images/personalization/pers-02-blur.png')">
+        <area id="rect4b" shape="rect" coords="26, 258, 218, 449" alt="rect4b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-10-blur.png')">
+        <area id="rect5b" shape="rect" coords="231, 258, 423, 449" alt="rect5b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-11-blur.png')">
+        <area id="rect6b" shape="rect" coords="438, 258, 627, 449" alt="rect6b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-12-blur.png')">
+        <area id="rect7b" shape="rect" coords="26, 489, 218, 680" alt="rect7b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-20-blur.png')">
+        <area id="rect8b" shape="rect" coords="231, 489, 423, 680" alt="rect8b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-21-blur.png')">
+        <area id="rect9b" shape="rect" coords="438, 489, 627, 680" alt="rect9b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-22-blur.png')">
+      </map>
+
+      <script>
+        function changeImage2(im_name) {
+          document.getElementById('mainImageb').src = im_name;
+
+      }
+  </script>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+
+
+<!-- Editing Slider -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <style>
+    img {
+      -drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+   }
+   label {
+            display: block;
+            text-align: center;
+            margin-bottom: 0px;
+            font-size: 25px; /* Responsive font size */
+        }
+    .slider {
+            width: 35vw; /* Adjust the width of the slider here, responsive to viewport width */
+            max-width: 1000px; /* Maximum width for larger screens */
+            margin: 0px 0;
+        }
+        .container {
+        text-align: center;
+    }
+  </style>
+
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Attribute Editing/Control</h2>
+    </div >
+    <br>
+    <div class="content has-text-justified" >
+          <p style="font-size: 18px;"><br> We map the given input image into <em>w</em> latent code, which is shifted by a global linear attribute edit direction to obtain edited latent code <em>w<sup>*</sup></em>. The edited latent code <em>w<sup>*</sup></em> is then passed through the T2I model to obtain fine-grained attribute edits. The scalar edit strength parameter <span style="color: red;">&beta;</span> can be changed to obtain continuous attribute control. Our method performs disentangled edits for various attributes while preserving identity and generalizing to in-the-wild faces, styles, and multiple-persons. <strong>Identity Interpolation.</strong> We can perform smooth interpolation between identities by interpolating between the corresponding <em>w</em> codes. </p>
+          <img src="./images/editing-pipeline.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+          <br>
+    </div>
+    <br>
+    <br>
+    
+    <h3 class="title is-4">Slide the bars to edit the identity.</h2>
+    <div class="content" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 20px;">
+      <div id="imageContainer">
+        <img id="dynamicImage" src="./images/single_edits/0-0.jpg" alt="Editing">
+    </div>
+
+
+      <label for="sliderA">Age:</label>
+      <input type="range" id="sliderA" class="slider is-large is-info" name="sliderA" min="0" max="4" value="0" oninput="updateImage()">
+
+    <!-- <input type="range" id="sliderA" name="sliderA" min="0" max="4" value="0"> -->
+    <span id="valueA">0</span>
+
+    <br>
+
+    <label for="sliderB">Beard:</label>
+    <!-- <input type="range" id="sliderB" name="sliderB" min="0" max="4" value="0"> -->
+    <input type="range" id="sliderB" class="slider is-large is-info" name="sliderB" min="0" max="4" value="0" oninput="updateImage()">
+
+    <span id="valueB">0</span>
+    
+    <script>
+        const sliderA = document.getElementById('sliderA');
+        const sliderB = document.getElementById('sliderB');
+
+        const valueA = document.getElementById('valueA');
+        const valueB = document.getElementById('valueB');
+
+        const dynamicImage = document.getElementById('dynamicImage');
+
+        function updateImage() {
+            const a = sliderA.value;
+            const b = sliderB.value;
+
+            valueA.textContent = a;
+            valueB.textContent = b;
+
+            dynamicImage.src = `./images/single_edits/${a}-${b}.jpg`;
+        }
+
+        sliderA.addEventListener('input', updateImage);
+        sliderB.addEventListener('input', updateImage);
+    </script>
+      
+    </div>
+    <br>
+    <br>
+    
+    <h3 class="title is-4">Additional Edit Directions</h3>
+    <div class="content has-text-justified">
+      <p style="font-size: 18px;"> We perform attribute editing by using the edit directions obtained from InterfaceGAN. The edit directions generalize well in T2I models, indicating easy integration of any off-the-shelf StyleGAN editing method in our framework. </p>
+      <img src="./images/interface-gan-edits.jpg" alt="interface">
+    </div>
+  </div>
+</div>
+      
+</section>
+
+
+<!-- Multi clickable -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <style>
+    img {
+      -drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+   }
+  </style>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Composing Multiple Subjects</h2>
+    </div>
+    <br>
+    <div class="content has-text-justified" >
+      <!-- <h3 class="title is-3">Key idea</h3> -->
+      <p style="font-size: 18px;"><br>We run multiple parallel diffusion processes, one for each subject and one for the background and fuse them using an instance segmentation mask at each denoising step. The instance mask can be user-provided or obtained by segmenting a generated image of two subjects by the same T2I model. Note that the diffusion process for each subject is passed through its corresponding fine-tuned model, which results in excellent identity preservation. </p>
+      <br>
+      <img src="./images/multi-id-pipeline.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- Old Multi Personalization clickable -->
+<section class="section" id="multi-person-section">
+  <div class="container is-max-desktop">
+    <style>
+    #multi-person-section img {
+      width: 100%;
+    }
+    #multi-person-section .clickable-area {
+      cursor: pointer;
+    }
+    </style>
+    <h3 class="title is-4">Who do you wanna combine?</h3>
+    <div class="content">
+      <img src="./images/multi_personalization/select_first.gif" alt="multi-pers" usemap="#workmapb_multi" id="multiPersonImage" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999;">
+      <map name="workmapb_multi">
+        <area shape="rect" coords="24,135,212,323" alt="rect1b" class="clickable-area" onclick="multiPersonChangeImage2('./images/multi_personalization/select_second_0.gif')">
+        <area shape="rect" coords="27,368,214,557" alt="rect2b" class="clickable-area" onclick="multiPersonChangeImage3('./images/multi_personalization/select_second_1.gif')">
+      </map>
+      <map name="workmapb_multi_0">
+        <area shape="rect" coords="170,100,310,250" alt="rect1b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-0-0.png')">
+        <area shape="rect" coords="170,270,310,420" alt="rect2b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-0-1.png')">
+      </map>
+      <map name="workmapb_multi_1">
+        <area shape="rect" coords="170,100,310,250" alt="rect1b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-1-0.png')">
+        <area shape="rect" coords="170,270,310,420" alt="rect2b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-1-1.png')">
+      </map>
+    </div>
+  </div>
+</section>
+
+<script>
+  function multiPersonChangeImage2(im_name) {
+    var img = document.getElementById('multiPersonImage');
+    img.src = im_name;
+    img.useMap = "#workmapb_multi_0";
+  }
+  
+  function multiPersonChangeImage3(im_name) {
+    var img = document.getElementById('multiPersonImage');
+    img.src = im_name;
+    img.useMap = "#workmapb_multi_1";
+  }
+  
+  function multiPersonChangeImage4(im_name) {
+    document.getElementById('multiPersonImage').src = im_name;
+  }
+
+</script>
+
+  
+<!-- Multi person Editing -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <style>
+      img {
+        -drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+      label {
+        display: block;
+        text-align: center;
+        margin-bottom: 0px;
+        font-size: 20px;
+      }
+      .slider {
+        width: 80%;
+        max-width: 300px;
+        margin: 10px auto;
+      }
+      .container {
+        text-align: center;
+      }
+      .image-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px; 
+      }
+      .image-container {
+        text-align: center;
+      }
+    </style>
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Multi-person Attribute Control</h2>
+    </div>
+    <br>
+    <div class="content has-text-justified">
+      <p style="font-size: 18px;">We can perform continuous edits on individual characters in the scene with minimal entanglement. Observe the smooth edit transformations for different attributes while preserving identity.</p>
+    </div>
+    <h3 class="title is-4">Slide the bars to take control.</h3>
+    <div class="content" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 20px;">
+      <div class="image-grid">
+        <div class="image-container">
+          <img id="image1" src="./images/multi_edit/only_hinton_beard/1.jpg" alt="Editing 1">
+          <label for="slider1">Beard<sub>person1</sub></label>
+          <input type="range" id="slider1" class="slider is-large is-info" min="0" max="19" value="0" oninput="updateImage1()">
+          <span id="value1">0</span>
+        </div>
+        <div class="image-container">
+          <img id="image2" src="./images/multi_edit/hinton_beard_feifei_black/1.jpg" alt="Editing 2">
+          <label for="slider2">Beard<sub>person1</sub> + Skin Tone<sub>person2</sub></label>
+          <input type="range" id="slider2" class="slider is-large is-info" min="0" max="19" value="0" oninput="updateImage2()">
+          <span id="value2">0</span>
+        </div>
+        <div class="image-container">
+          <img id="image3" src="./images/multi_edit/einstein_smile_feynman_age/1.jpg" alt="Editing 3">
+          <label for="slider3">Smile<sub>person1</sub> + Age<sub>person2</sub></label>
+          <input type="range" id="slider3" class="slider is-large is-info" min="0" max="18" value="0" oninput="updateImage3()">
+          <span id="value3">0</span>
+        </div>
+        <div class="image-container">
+          <img id="image4" src="./images/multi_edit/einstein_glass_feynman_beard/1.jpg" alt="Editing 4">
+          <label for="slider4">Eyeglasses<sub>person1</sub> + Beard<sub>person2</sub></label>
+          <input type="range" id="slider4" class="slider is-large is-info" min="0" max="8" value="0" oninput="updateImage4()">
+          <span id="value4">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  function updateImage1() {
+    const slider = document.getElementById('slider1');
+    const value = document.getElementById('value1');
+    const image = document.getElementById('image1');
+    
+    value.textContent = slider.value;
+    image.src = `./images/multi_edit/only_hinton_beard/${parseInt(slider.value) + 1}.jpg`;
+  }
+
+  function updateImage2() {
+    const slider = document.getElementById('slider2');
+    const value = document.getElementById('value2');
+    const image = document.getElementById('image2');
+    
+    value.textContent = slider.value;
+    image.src = `./images/multi_edit/hinton_beard_feifei_black/${parseInt(slider.value) + 1}.jpg`;
+  }
+
+  function updateImage3() {
+    const slider = document.getElementById('slider3');
+    const value = document.getElementById('value3');
+    const image = document.getElementById('image3');
+    
+    value.textContent = slider.value;
+    image.src = `./images/multi_edit/einstein_smile_feynman_age/${parseInt(slider.value) + 1}.jpg`;
+  }
+
+  function updateImage4() {
+    const slider = document.getElementById('slider4');
+    const value = document.getElementById('value4');
+    const image = document.getElementById('image4');
+    
+    value.textContent = slider.value;
+    image.src = `./images/multi_edit/einstein_glass_feynman_beard/${parseInt(slider.value) + 1}.jpg`;
+  }
+</script>
+
+  
+
+  
+<section class="section">
+  <div class="container is-max-desktop">
+    <style>
+    img {
+      -drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+   }
+   .image-container img {
+            width: 50%;  /* Adjust the width as needed */
+            max-width: 500px;  /* Maximum width */
+            height: auto;  /* Maintain aspect ratio */
+        }
+  </style>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Applications</h2>
+    </div>
+    <br>
+    <h3 class="title is-4">Face Restoration</h2>
+    <div class="content has-text-justified">
+      <br>
+      <p style="font-size: 18px;">The disentangled <em>W<sup>+</sup></em> latent space serves as an excellent face prior in StyleGANs. Leveraging this, we perform face restoration by projecting a corrupted face image into the <em>W<sup>+</sup></em> latent space using the StyleGAN encoder to condition the T2I model. The resultant generated images look realistic and can be embedded and edited using T2I capabilities. Personalization of such corrupted images is challenging as the model could easily overfit the given single-face image. </p>
+      <br>
+      <img src="./images/restoration-blur.jpg" alt="rest-blur">
+      <br>
+      <img src="./images/restoration-masked.jpg" alt="rest-masked">
+      <br>
+    <h3 class="title is-4">Sketch-to-image</h2>
+    <div class="content has-text-justified">
+      <p style="font-size: 18px;"><strong>We use psp StyleGAN encoder trained to map edge images to the <em>W<sup>+</sup></em> latent space for sketch to image generation. The obtained &#x1D54A; latent code can then be used to condition the T2I model for real image generation. </p>
+      <br>
+      <img src="./images/restoration-sketch.jpg" alt="rest-sketch">
+    <br>
+      
+</section>
+
+<hr>
+
+<section class="section">
+  <div class="container is-max-desktop">
+  <div class="bibtex">
+  <style>
+    .bibtex{
+  text-align: left;
+}
+  </style>
+    <h2 class="title">Acknowledgments</h2>
+    <p style="font-size: 18px;">
+      The authors are thankful to Aniket Dashpute, Ankit Dhiman and Abhijnya Bhat for reviewing the draft and providing helpful feedback. Rishubh Parihar is partly supported by PMRF from Govt. of India and Kotak AI Center at IISc. 
+    </p>
+</div>
+</div>
+</section>
+
+      
+<hr>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop">
+  <div class="bibtex">
+  <style>
+    .bibtex{
+  text-align: left;
+}
+
+
+  </style>
+
+
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{rishubh2024precisecontrol,
+      title={PreciseControl : Enhancing Text-to-Image Diffusion Models with Fine-Grained Attribute Control},
+      author={Rishubh Parihar, Sachidanand VS, Sabariswaran Mani, Tejan Karmali, R. Venkatesh Babu},
+      joutnal={Eurpean Conference on Computer Vision},      
+      year={2024}, 
+}</code></pre>
+
+</div>
+</div>
+
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://sirabas369.github.io/precise-control/">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://sirabas369.github.io/precise-control/" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is based on the template from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> website under the <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="./static/resize/imageMapResizer.min.js"></script>
+<script>
+  imageMapResize();
+  </script>
+
+</body>
+</html>
