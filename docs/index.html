@@ -2,13 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="PreciseControl : Enhancing Text-to-Image Diffusion Models with Fine-Grained Attribute Control">
-  <meta name="keywords" content="Diffusion Models, Personalization, Editing, Text-to-Image, Control">
+  <meta name="description" content="Real-World Offline Reinforcement Learning from Vision Language Model Feedback">
+  <meta name="keywords" content="Offline RL, Vision-Language Models, Reward Learning, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>PreciseControl</title>
-
+  <title>Offline RL-VLM-F</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -31,80 +29,19 @@
 </head>
 <body>
 
-
-
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">PreciseControl : Enhancing Text-to-Image Diffusion Models with Fine-Grained Attribute Control</h1>
-          <h1 class="title is-2 conference-title">ECCV 2024</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://rishubhpar.github.io/">Rishubh Parihar</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://www.linkedin.com/in/sachidanand-v-s-449573201/">Sachidanand V S</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://www.linkedin.com/in/sabariswaran-mani-48b8b522a/">Sabariswaran Mani</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://tejank10.github.io/">Tejan Karmali</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://cds.iisc.ac.in/faculty/venky/">R. Venkatesh Babu</a><sup>1</sup>,
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Vision and AI Lab, Indian Institute of Science,</span>
-            <span class="author-block"><sup>2</sup>Indian Institute of Technology, Kharagpur</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2408.05083"                       // change
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-
-              </span>
-              <span class="link-block">
-              <a href="./PreciseControl_arXiv.pdf" 
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-              <span>Paper</span>
-                </a>
-              </span> 
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://rishubhpar.github.io/PreciseControl.home/"                       // change
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video (Coming soon)</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/rishubhpar/PreciseControl"                        // change
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-            </div>
-
+          <!-- Title and Conference Info -->
+          <h1 class="title is-1 publication-title">
+            Real-World Offline Reinforcement Learning from Vision Language Model Feedback
+          </h1>
+          <h2 class="title is-2 conference-title">
+            In Submission at LangRob Workshop, CORL-2024
+          </h2>
+    
           </div>
         </div>
       </div>
@@ -112,18 +49,21 @@
   </div>
 </section>
 
+
+
 <section class="hero teaser">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="./images/teaser-fig.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+    <div class="hero-body has-text-centered">
+      <video controls style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px; max-width: 100%;">
+        <source src="./videos/summary_vid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       <h2 class="subtitle has-text-centered">
-        We enable precise attribute control in Text-to-Image Generation by combining Diffusion Models and StyleGANs
+        Combining preference based reward learning from Vision-Language Models with offline RL for policy learning from unlabeled datasets
       </h2>
     </div>
   </div>
 </section>
-
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -133,489 +73,519 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p style="font-size: 18px;">
-          Recently, we have seen a surge of personalization methods for text-to-image (T2I) diffusion models to learn a concept using a few images. Existing approaches, when used for face personalization, suffer to achieve convincing inversion with identity preservation and rely on semantic text-based editing of the generated face. However, a more fine-grained control is desired for facial attribute editing, which is challenging to achieve solely with text prompts. In contrast, StyleGAN models learn a rich face prior and enable smooth control towards fine-grained attribute editing by latent manipulation. This work uses the disentangled <em>W<sup>+</sup></em> space of StyleGANs to condition the T2I model. This approach allows us to precisely manipulate facial attributes, such as smoothly introducing a smile, while preserving the existing coarse text-based control inherent in T2I models. To enable conditioning of the T2I model on the <em>W<sup>+</sup></em> space, we train a latent mapper to translate latent codes from <em>W<sup>+</sup></em> to the token embedding space of the T2I model. The proposed approach excels in the precise inversion of face images with attribute preservation and facilitates continuous control for fine-grained attribute editing. Furthermore, our approach can be readily extended to generate compositions involving multiple individuals. We perform extensive experiments to validate our method for face personalization and fine-grained attribute editing.
+           Offline reinforcement learning can enable policy learning from pre-collected, sub-optimal datasets without online interactions. This makes it ideal for real-world robots and safety-critical scenarios, where collecting online data or expert demonstrations is slow, costly, and risky. However, most existing offline RL works assume the dataset is already labeled with the task rewards, a process that often requires significant human effort, especially when ground-truth states are hard to ascertain
+          (e.g., in the real-world). In this paper, we build on prior work, specifically RL-VLM-F, and propose a novel system that automatically generates reward labels for offline datasets using preference feedback from a vision-language model and a text description of the task. Our method then learns a policy using offline RL with the reward-labeled dataset. We demonstrate the
+          system’s applicability to a complex real-world robot-assisted dressing task, where we first learn a reward function using a vision-language model on a sub-optimal offline dataset, and then we use the learned reward to employ Implicit Q learning to
+          develop an effective dressing policy. Our method also performs well in simulation tasks involving the manipulation of rigid and deformable objects, and significantly outperform baselines such as behavior cloning and inverse RL. In summary, we propose a new system that enables automatic reward labeling and policy
+          learning from unlabeled, sub-optimal offline datasets.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-<!--     <div class="columns is-centered has-text-centered"> -->
-<!--       <div class="column is-four-fifths"> -->
-<!--         <h2 class="title is-3">Video</h2> -->
-<!--         <div class="publication-video"> -->
-<!--           <iframe src="" -->
-<!--                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-    <!--/ Paper video. -->
   </div>
 </section>
 
-
-
-<section class="section">
+<!-- Add more sections for methodology, experiments, etc., as per the paper -->
+  <section class="section">
   <div class="container is-max-desktop">
-    <style>
-    img {
-      -drag: none;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-drag: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-   }
-  </style>
     <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Personalization</h2>
-    </div>
-    <div class="content has-text-justified" >
-      <!-- <h3 class="title is-3">Key idea</h3> -->
-      <p style="font-size: 18px;"><br>Given a single portrait image, we extract its <i>w</i> latent representation from encoder <i>E</i><sub>GAN</sub>. The latent <i>w</i> along with diffusion timestep <i>t</i> are passed through the latent adaptor <i>M</i> to generate a pair of time-dependent token embeddings (<i>v</i><sub><i>t</i></sub><sup>1</sup>, <i>v</i><sub><i>t</i></sub><sup>2</sup>) representing the input subject. Finally, the token embeddings are combined with arbitrary prompts to generate customized images.</p>
-      <br>
-      <img src="./images/proposed-framework.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
-      <br>
-
-    </div>
-  </div>
-  </div>
-</section>
-
-
-<!-- Personalization clickable -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <style>
-    img {
-      width:100%;
-   }
-   .clickable-area {
-            cursor: pointer;
-        }
-  </style>
-    <h3 class="title is-4">Click to send your pal on a virtual vacation.</h2>
-    <div class="content">
-      <!-- <h3 class="title is-3">Key idea</h3> -->
-      <img src="./images/personalization/personalization-tweeter-9.gif" alt="personalization" usemap="#workmapb" id="mainImageb" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999;">
-      <!-- style="transform: translate(45px,0px);" -->
-      <map name="workmapb">
-        <area id="rect1b" shape="rect" coords="26, 26, 218, 216" alt="rect1b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-00-blur.png')">
-        <area id="rect2b" shape="rect" coords="231,26, 423, 216" alt="rect2b" class="clickable-area" onclick="changeImage2('./images/personalization/pers-01-blur.png')">
-        <area id="rect3b" shape="rect" coords="438, 26, 627, 216" alt="rect3b" class="clickable-area" onclick="changeImage2('./images/personalization/pers-02-blur.png')">
-        <area id="rect4b" shape="rect" coords="26, 258, 218, 449" alt="rect4b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-10-blur.png')">
-        <area id="rect5b" shape="rect" coords="231, 258, 423, 449" alt="rect5b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-11-blur.png')">
-        <area id="rect6b" shape="rect" coords="438, 258, 627, 449" alt="rect6b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-12-blur.png')">
-        <area id="rect7b" shape="rect" coords="26, 489, 218, 680" alt="rect7b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-20-blur.png')">
-        <area id="rect8b" shape="rect" coords="231, 489, 423, 680" alt="rect8b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-21-blur.png')">
-        <area id="rect9b" shape="rect" coords="438, 489, 627, 680" alt="rect9b"  class="clickable-area" onclick="changeImage2('./images/personalization/pers-22-blur.png')">
-      </map>
-
-      <script>
-        function changeImage2(im_name) {
-          document.getElementById('mainImageb').src = im_name;
-
-      }
-  </script>
-
-    </div>
-  </div>
-  </div>
-</section>
-
-
-
-<!-- Editing Slider -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <style>
-    img {
-      -drag: none;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-drag: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-   }
-   label {
-            display: block;
-            text-align: center;
-            margin-bottom: 0px;
-            font-size: 25px; /* Responsive font size */
-        }
-    .slider {
-            width: 35vw; /* Adjust the width of the slider here, responsive to viewport width */
-            max-width: 1000px; /* Maximum width for larger screens */
-            margin: 0px 0;
-        }
-        .container {
-        text-align: center;
-    }
-  </style>
-
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Attribute Editing/Control</h2>
-    </div >
-    <br>
-    <div class="content has-text-justified" >
-          <p style="font-size: 18px;"><br> We map the given input image into <em>w</em> latent code, which is shifted by a global linear attribute edit direction to obtain edited latent code <em>w<sup>*</sup></em>. The edited latent code <em>w<sup>*</sup></em> is then passed through the T2I model to obtain fine-grained attribute edits. The scalar edit strength parameter <span style="color: red;">&beta;</span> can be changed to obtain continuous attribute control. Our method performs disentangled edits for various attributes while preserving identity and generalizing to in-the-wild faces, styles, and multiple-persons. <strong>Identity Interpolation.</strong> We can perform smooth interpolation between identities by interpolating between the corresponding <em>w</em> codes. </p>
-          <img src="./images/editing-pipeline.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
-          <br>
-    </div>
-    <br>
-    <br>
-    
-    <h3 class="title is-4">Slide the bars to edit the identity.</h2>
-    <div class="content" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 20px;">
-      <div id="imageContainer">
-        <img id="dynamicImage" src="./images/single_edits/0-0.jpg" alt="Editing">
-    </div>
-
-
-      <label for="sliderA">Age:</label>
-      <input type="range" id="sliderA" class="slider is-large is-info" name="sliderA" min="0" max="4" value="0" oninput="updateImage()">
-
-    <!-- <input type="range" id="sliderA" name="sliderA" min="0" max="4" value="0"> -->
-    <span id="valueA">0</span>
-
-    <br>
-
-    <label for="sliderB">Beard:</label>
-    <!-- <input type="range" id="sliderB" name="sliderB" min="0" max="4" value="0"> -->
-    <input type="range" id="sliderB" class="slider is-large is-info" name="sliderB" min="0" max="4" value="0" oninput="updateImage()">
-
-    <span id="valueB">0</span>
-    
-    <script>
-        const sliderA = document.getElementById('sliderA');
-        const sliderB = document.getElementById('sliderB');
-
-        const valueA = document.getElementById('valueA');
-        const valueB = document.getElementById('valueB');
-
-        const dynamicImage = document.getElementById('dynamicImage');
-
-        function updateImage() {
-            const a = sliderA.value;
-            const b = sliderB.value;
-
-            valueA.textContent = a;
-            valueB.textContent = b;
-
-            dynamicImage.src = `./images/single_edits/${a}-${b}.jpg`;
-        }
-
-        sliderA.addEventListener('input', updateImage);
-        sliderB.addEventListener('input', updateImage);
-    </script>
-      
-    </div>
-    <br>
-    <br>
-    
-    <h3 class="title is-4">Additional Edit Directions</h3>
-    <div class="content has-text-justified">
-      <p style="font-size: 18px;"> We perform attribute editing by using the edit directions obtained from InterfaceGAN. The edit directions generalize well in T2I models, indicating easy integration of any off-the-shelf StyleGAN editing method in our framework. </p>
-      <img src="./images/interface-gan-edits.jpg" alt="interface">
-    </div>
-  </div>
-</div>
-      
-</section>
-
-
-<!-- Multi clickable -->
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <style>
-    img {
-      -drag: none;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-drag: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-   }
-  </style>
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Composing Multiple Subjects</h2>
-    </div>
-    <br>
-    <div class="content has-text-justified" >
-      <!-- <h3 class="title is-3">Key idea</h3> -->
-      <p style="font-size: 18px;"><br>We run multiple parallel diffusion processes, one for each subject and one for the background and fuse them using an instance segmentation mask at each denoising step. The instance mask can be user-provided or obtained by segmenting a generated image of two subjects by the same T2I model. Note that the diffusion process for each subject is passed through its corresponding fine-tuned model, which results in excellent identity preservation. </p>
-      <br>
-      <img src="./images/multi-id-pipeline.jpg" alt="scheme" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
-    </div>
-  </div>
-  </div>
-</section>
-
-
-<!-- Old Multi Personalization clickable -->
-<section class="section" id="multi-person-section">
-  <div class="container is-max-desktop">
-    <style>
-    #multi-person-section img {
-      width: 100%;
-    }
-    #multi-person-section .clickable-area {
-      cursor: pointer;
-    }
-    </style>
-    <h3 class="title is-4">Who do you wanna combine?</h3>
-    <div class="content">
-      <img src="./images/multi_personalization/select_first.gif" alt="multi-pers" usemap="#workmapb_multi" id="multiPersonImage" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999;">
-      <map name="workmapb_multi">
-        <area shape="rect" coords="24,135,212,323" alt="rect1b" class="clickable-area" onclick="multiPersonChangeImage2('./images/multi_personalization/select_second_0.gif')">
-        <area shape="rect" coords="27,368,214,557" alt="rect2b" class="clickable-area" onclick="multiPersonChangeImage3('./images/multi_personalization/select_second_1.gif')">
-      </map>
-      <map name="workmapb_multi_0">
-        <area shape="rect" coords="170,100,310,250" alt="rect1b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-0-0.png')">
-        <area shape="rect" coords="170,270,310,420" alt="rect2b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-0-1.png')">
-      </map>
-      <map name="workmapb_multi_1">
-        <area shape="rect" coords="170,100,310,250" alt="rect1b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-1-0.png')">
-        <area shape="rect" coords="170,270,310,420" alt="rect2b" class="clickable-area" onclick="multiPersonChangeImage4('./images/multi_personalization/multi-pers-1-1.png')">
-      </map>
-    </div>
-  </div>
-</section>
-
-<script>
-  function multiPersonChangeImage2(im_name) {
-    var img = document.getElementById('multiPersonImage');
-    img.src = im_name;
-    img.useMap = "#workmapb_multi_0";
-  }
-  
-  function multiPersonChangeImage3(im_name) {
-    var img = document.getElementById('multiPersonImage');
-    img.src = im_name;
-    img.useMap = "#workmapb_multi_1";
-  }
-  
-  function multiPersonChangeImage4(im_name) {
-    document.getElementById('multiPersonImage').src = im_name;
-  }
-
-</script>
-
-  
-<!-- Multi person Editing -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <style>
-      img {
-        -drag: none;
-        user-select: none;
-        -moz-user-select: none;
-        -webkit-user-drag: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-      }
-      label {
-        display: block;
-        text-align: center;
-        margin-bottom: 0px;
-        font-size: 20px;
-      }
-      .slider {
-        width: 80%;
-        max-width: 300px;
-        margin: 10px auto;
-      }
-      .container {
-        text-align: center;
-      }
-      .image-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5px; 
-      }
-      .image-container {
-        text-align: center;
-      }
-    </style>
-    <br>
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Multi-person Attribute Control</h2>
-    </div>
-    <br>
-    <div class="content has-text-justified">
-      <p style="font-size: 18px;">We can perform continuous edits on individual characters in the scene with minimal entanglement. Observe the smooth edit transformations for different attributes while preserving identity.</p>
-    </div>
-    <h3 class="title is-4">Slide the bars to take control.</h3>
-    <div class="content" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 20px;">
-      <div class="image-grid">
-        <div class="image-container">
-          <img id="image1" src="./images/multi_edit/only_hinton_beard/1.jpg" alt="Editing 1">
-          <label for="slider1">Beard<sub>person1</sub></label>
-          <input type="range" id="slider1" class="slider is-large is-info" min="0" max="19" value="0" oninput="updateImage1()">
-          <span id="value1">0</span>
-        </div>
-        <div class="image-container">
-          <img id="image2" src="./images/multi_edit/hinton_beard_feifei_black/1.jpg" alt="Editing 2">
-          <label for="slider2">Beard<sub>person1</sub> + Skin Tone<sub>person2</sub></label>
-          <input type="range" id="slider2" class="slider is-large is-info" min="0" max="19" value="0" oninput="updateImage2()">
-          <span id="value2">0</span>
-        </div>
-        <div class="image-container">
-          <img id="image3" src="./images/multi_edit/einstein_smile_feynman_age/1.jpg" alt="Editing 3">
-          <label for="slider3">Smile<sub>person1</sub> + Age<sub>person2</sub></label>
-          <input type="range" id="slider3" class="slider is-large is-info" min="0" max="18" value="0" oninput="updateImage3()">
-          <span id="value3">0</span>
-        </div>
-        <div class="image-container">
-          <img id="image4" src="./images/multi_edit/einstein_glass_feynman_beard/1.jpg" alt="Editing 4">
-          <label for="slider4">Eyeglasses<sub>person1</sub> + Beard<sub>person2</sub></label>
-          <input type="range" id="slider4" class="slider is-large is-info" min="0" max="8" value="0" oninput="updateImage4()">
-          <span id="value4">0</span>
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">System</h2>
+        <div class="content has-text-centered">
+          <img src="./images/Offline RL-VLM-F method.png" alt="Methods Figure" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px; max-width: 100%;">
+          <p class="subtitle has-text-justified" style="margin-top: 10px; font-size: 16px; line-height: 1.5;">
+            <br><br><strong>Top:</strong> Our system, Offline RL-VLM-F, combines RL-VLM-F [1] with offline RL for effective policy learning from
+            unlabeled datasets. Given an unlabeled dataset without rewards, it first samples observation pairs, and queries a Vision
+            Language Model for preferences given a text description of the task. Using the preference labels, it then learns a reward
+            model via preference-based reward learning. The learned reward model is utilized to label the entire offline dataset. Finally,
+            it performs offline RL with the labeled dataset to learn a policy that solves the task. <br><br><strong>Bottom:</strong> We follow the same VLM
+            querying process as in RL-VLM-F. It consists of two stages: the first is an analysis stage that asks the VLM to analyze
+            and compare the two images; the second is the labeling stage, where the VLM generates the preference labels based on its
+            own analysis from the first stage and the task description.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-<script>
-  function updateImage1() {
-    const slider = document.getElementById('slider1');
-    const value = document.getElementById('value1');
-    const image = document.getElementById('image1');
-    
-    value.textContent = slider.value;
-    image.src = `./images/multi_edit/only_hinton_beard/${parseInt(slider.value) + 1}.jpg`;
-  }
-
-  function updateImage2() {
-    const slider = document.getElementById('slider2');
-    const value = document.getElementById('value2');
-    const image = document.getElementById('image2');
-    
-    value.textContent = slider.value;
-    image.src = `./images/multi_edit/hinton_beard_feifei_black/${parseInt(slider.value) + 1}.jpg`;
-  }
-
-  function updateImage3() {
-    const slider = document.getElementById('slider3');
-    const value = document.getElementById('value3');
-    const image = document.getElementById('image3');
-    
-    value.textContent = slider.value;
-    image.src = `./images/multi_edit/einstein_smile_feynman_age/${parseInt(slider.value) + 1}.jpg`;
-  }
-
-  function updateImage4() {
-    const slider = document.getElementById('slider4');
-    const value = document.getElementById('value4');
-    const image = document.getElementById('image4');
-    
-    value.textContent = slider.value;
-    image.src = `./images/multi_edit/einstein_glass_feynman_beard/${parseInt(slider.value) + 1}.jpg`;
-  }
-</script>
-
-  
-
   
 <section class="section">
   <div class="container is-max-desktop">
-    <style>
-    img {
-      -drag: none;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-drag: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-   }
-   .image-container img {
-            width: 50%;  /* Adjust the width as needed */
-            max-width: 500px;  /* Maximum width */
-            height: auto;  /* Maintain aspect ratio */
-        }
-  </style>
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Applications</h2>
+    <h2 class="title is-3 has-text-centered">Environments</h2>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths has-text-centered">
+        <img src="./images/tasks.png" alt="Environments" style="width: 100%; border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+      </div>
     </div>
-    <br>
-    <h3 class="title is-4">Face Restoration</h2>
-    <div class="content has-text-justified">
-      <br>
-      <p style="font-size: 18px;">The disentangled <em>W<sup>+</sup></em> latent space serves as an excellent face prior in StyleGANs. Leveraging this, we perform face restoration by projecting a corrupted face image into the <em>W<sup>+</sup></em> latent space using the StyleGAN encoder to condition the T2I model. The resultant generated images look realistic and can be embedded and edited using T2I capabilities. Personalization of such corrupted images is challenging as the model could easily overfit the given single-face image. </p>
-      <br>
-      <img src="./images/restoration-blur.jpg" alt="rest-blur">
-      <br>
-      <img src="./images/restoration-masked.jpg" alt="rest-masked">
-      <br>
-    <h3 class="title is-4">Sketch-to-image</h2>
-    <div class="content has-text-justified">
-      <p style="font-size: 18px;"><strong>We use psp StyleGAN encoder trained to map edge images to the <em>W<sup>+</sup></em> latent space for sketch to image generation. The obtained &#x1D54A; latent code can then be used to condition the T2I model for real image generation. </p>
-      <br>
-      <img src="./images/restoration-sketch.jpg" alt="rest-sketch">
-    <br>
-      
+  </div>
 </section>
-
-<hr>
 
 <section class="section">
   <div class="container is-max-desktop">
-  <div class="bibtex">
-  <style>
-    .bibtex{
-  text-align: left;
-}
-  </style>
-    <h2 class="title">Acknowledgments</h2>
-    <p style="font-size: 18px;">
-      The authors are thankful to Aniket Dashpute, Ankit Dhiman and Abhijnya Bhat for reviewing the draft and providing helpful feedback. Rishubh Parihar is partly supported by PMRF from Govt. of India and Kotak AI Center at IISc. 
-    </p>
+    <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+
+    <!-- Simulation Results Section -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">Simulation Results</h3>
+        <div class="content">
+          <!-- Insert the simulation table here -->
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="font-size: 0.85em;">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Dataset</th>
+                <th>IQL-GT Reward</th>
+                <th style="background-color: #e0e0e0;">Offline RLVLMF (Ours)</th>
+                <th>IQL-Average Reward</th>
+                <th>Simple Behavioral Cloning</th>
+                <th>Diffusion Policy</th>
+                <th>GAIL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Open Drawer Task -->
+              <tr>
+                <td rowspan="3">Open Drawer</td>
+                <td>Random</td>
+                <td>0.99</td>
+                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>0.91</strong></td>
+                <td>0.19</td>
+                <td>0.04</td>
+                <td>0.08</td>
+                <td>0.03</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>0.95</td>
+                <td style="background-color: #e0e0e0;">0.85</td>
+                <td>0.84)</td>
+                <td><strong>0.88</strong></td>
+                <td>0.00</td>
+                <td>0.00</td>
+              </tr>
+              <tr>
+                <td>Expert</td>
+                <td>0.99</td>
+                <td style="background-color: #e0e0e0;">0.99</td>
+                <td><strong>1.00</strong></td>
+                <td><strong>1.00</strong></td>
+                <td><strong>1.00</strong></td>
+                <td>0.07</td>
+              </tr>
+              
+              <!-- Soccer Task -->
+              <tr>
+                <td rowspan="3">Soccer</td>
+                <td>Random</td>
+                <td>0.30</td>
+                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>0.23</strong></td>
+                <td>0.11</td>
+                <td>0.11</td>
+                <td>0.13</td>
+                <td>0.01</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>0.19</td>
+                <td style="background-color: #e0e0e0;">0.15</td>
+                <td>0.19</td>
+                <td><strong>0.20</strong></td>
+                <td>0.10</td>
+                <td>0.00</td>
+              </tr>
+              <tr>
+                <td>Expert</td>
+                <td>0.42</td>
+                <td style="background-color: #e0e0e0;">0.42</td>
+                <td>0.41</td>
+                <td>0.41</td>
+                <td><strong>0.49</strong></td>
+                <td>0.04</td>
+              </tr>
+              
+              <!-- Cartpole Task -->
+              <tr>
+                <td rowspan="3">Cartpole</td>
+                <td>Random</td>
+                <td>-93.54</td>
+                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>-212.87</strong></td>
+                <td>-2537.62</td>
+                <td>-1816.98</td>
+                <td>-2063.65</td>
+                <td>-1683.31</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>-98.85</td>
+                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>-144.56</strong></td>
+                <td>-236.77</td>
+                <td>-165.16</td>
+                <td>-1875.05</td>
+                <td>-431.31</td>
+              </tr>
+              <tr>
+                <td>Expert</td>
+                <td>-83.93</td>
+                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>-78.77</strong></td>
+                <td>-81.46</td>
+                <td>-79.19</td>
+                <td>-1423.32</td>
+                <td>-433.64</td>
+              </tr>
+              
+              <!-- Straighten Rope Task -->
+              <tr>
+                <td rowspan="3">Straighten Rope</td>
+                <td>Random</td>
+                <td>20.93</td>
+                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>16.70</strong></td>
+                <td>8.71</td>
+                <td>12.73</td>
+                <td>12.01</td>
+                <td>11.75</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>14.34</td>
+                <td style="background-color: #e0e0e0;">14.56</td>
+                <td>14.15</td>
+                <td>14.17</td>
+                <td><strong>20.27</strong></td>
+                <td>19.88</td>
+              </tr>
+              <tr>
+                <td>Expert</td>
+                <td>20.58</td>
+                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>20.54</strong></td>
+                <td>20.46</td>
+                <td><strong>20.54</strong></td>
+                <td>20.27</td>
+                <td>12.33</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
+  <div class="column is-four-fifths">
+    <h3 class="title is-4">Real World Results</h3>
+
+    <!-- Images Row -->
+    <div class="columns">
+      <!-- Real World Viper Results -->
+      <div class="column">
+        <img src="./images/real_world_results_1.png" alt="Real World Result 1" style="width: 100%; border: 2px solid gray; border-radius: 10px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+        <p class="subtitle">
+          Dressed ratio of our method and DP3 on the ViperX 300 S arm. As shown, our method achieves higher dressed ratios on all three garments.
+        </p>
+      </div>
+
+      <!-- Real World Manikin Results -->
+      <div class="column">
+        <img src="./images/real_world_results_2.png" alt="Real World Result 2" style="width: 100%; border: 2px solid gray; border-radius: 10px; box-shadow: 0px 0px 10px #999; padding: 5px;">
+        <p class="subtitle">
+          Dressed ratio of our method and DP3 on the manikin arm. Both methods achieve similarly high performance, as the manikin arm better represents a real person’s arm and holds an easier pose for dressing.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+
+    
 </section>
-
-      
-<hr>
-
-
-<section class="section" id="BibTeX">
+<section class="section">
   <div class="container is-max-desktop">
-  <div class="bibtex">
-  <style>
-    .bibtex{
-  text-align: left;
-}
+    <h2 class="title is-3 has-text-centered">Simulation Experiments</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <p class="subtitle has-text-centered">
+          We show below the rollouts for four environments on the random dataset and compare it with the other baselines.
+        </p>
+      </div>
+    </div>
 
+    <!-- Drawer Task -->
+    <div class="columns is-centered">
+      <div class="column is-centered">
+        <h3 class="title is-4">Drawer Task</h3>
+        <div class="columns">
+          <!-- IQL GT Reward -->
+          <div class="column">
+            <img src="./images/drawer/IQL_gt_reward.gif" alt="Drawer - IQL GT Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL GT Reward</p>
+          </div>
+          <!-- IQL Offline RL-VLMF Ours -->
+          <div class="column">
+            <img src="./images/drawer/IQL_offline_rlvlmf_ours.gif" alt="Drawer - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Offline RL-VLMF (Ours)</p>
+          </div>
+          <!-- IQL Average Reward -->
+          <div class="column">
+            <img src="./images/drawer/IQL_average_reward.gif" alt="Drawer - IQL Average Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL Average Reward</p>
+          </div>
+          <!-- Behavioral Cloning -->
+          <div class="column">
+            <img src="./images/drawer/BC.gif" alt="Drawer - Behavioral Cloning" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Behavioral Cloning (BC)</p>
+          </div>
+          <!-- Diffusion Policy -->
+          <div class="column">
+            <img src="./images/drawer/diffusion_policy.gif" alt="Drawer - Diffusion Policy" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Diffusion Policy</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  </style>
+    <!-- Cartpole Task -->
+    <div class="columns is-centered">
+      <div class="column is-centered">
+        <h3 class="title is-4">Cartpole Task</h3>
+        <div class="columns">
+          <!-- IQL GT Reward -->
+          <div class="column">
+            <img src="./images/cartpole/IQL_gt_reward.gif" alt="Cartpole - IQL GT Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL GT Reward</p>
+          </div>
+          <!-- IQL Offline RL-VLMF Ours -->
+          <div class="column">
+            <img src="./images/cartpole/IQL_offline_rlvlmf_ours.gif" alt="Cartpole - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Offline RL-VLMF (Ours)</p>
+          </div>
+          <!-- IQL Average Reward -->
+          <div class="column">
+            <img src="./images/cartpole/IQL_average_reward.gif" alt="Cartpole - IQL Average Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL Average Reward</p>
+          </div>
+          <!-- Behavioral Cloning -->
+          <div class="column">
+            <img src="./images/cartpole/BC.gif" alt="Cartpole - Behavioral Cloning" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Behavioral Cloning (BC)</p>
+          </div>
+          <!-- Diffusion Policy -->
+          <div class="column">
+            <img src="./images/cartpole/diffusion_policy.gif" alt="Cartpole - Diffusion Policy" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Diffusion Policy</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Rope Task -->
+    <div class="columns is-centered">
+      <div class="column is-centered">
+        <h3 class="title is-4">Rope Task</h3>
+        <div class="columns">
+          <!-- IQL GT Reward -->
+          <div class="column">
+            <img src="./images/rope/IQL_gt_reward.gif" alt="Rope - IQL GT Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL GT Reward</p>
+          </div>
+          <!-- IQL Offline RL-VLMF Ours -->
+          <div class="column">
+            <img src="./images/rope/IQL_offline_rlvlmf_ours.gif" alt="Rope - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Offline RL-VLMF (Ours)</p>
+          </div>
+          <!-- IQL Average Reward -->
+          <div class="column">
+            <img src="./images/rope/IQL_average_reward.gif" alt="Rope - IQL Average Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL Average Reward</p>
+          </div>
+          <!-- Behavioral Cloning -->
+          <div class="column">
+            <img src="./images/rope/BC.gif" alt="Rope - Behavioral Cloning" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Behavioral Cloning (BC)</p>
+          </div>
+          <!-- Diffusion Policy -->
+          <div class="column">
+            <img src="./images/rope/diffusion_policy.gif" alt="Rope - Diffusion Policy" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Diffusion Policy</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{rishubh2024precisecontrol,
-      title={PreciseControl : Enhancing Text-to-Image Diffusion Models with Fine-Grained Attribute Control},
-      author={Rishubh Parihar, Sachidanand VS, Sabariswaran Mani, Tejan Karmali, R. Venkatesh Babu},
-      joutnal={Eurpean Conference on Computer Vision},      
-      year={2024}, 
-}</code></pre>
+    <!-- Soccer Task -->
+    <div class="columns is-centered">
+      <div class="column is-centered">
+        <h3 class="title is-4">Soccer Task</h3>
+        <div class="columns">
+          <!-- IQL GT Reward -->
+          <div class="column">
+            <img src="./images/soccer/IQL_gt_reward.gif" alt="Soccer - IQL GT Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL GT Reward</p>
+          </div>
+          <!-- IQL Offline RL-VLMF Ours -->
+          <div class="column">
+            <img src="./images/soccer/IQL_offline_rlvlmf_ours.gif" alt="Soccer - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Offline RL-VLMF (Ours)</p>
+          </div>
+          <!-- IQL Average Reward -->
+          <div class="column">
+            <img src="./images/soccer/IQL_average_reward.gif" alt="Soccer - IQL Average Reward" style="width: 100%; padding: 5px;">
+            <p class="subtitle">IQL Average Reward</p>
+          </div>
+          <!-- Behavioral Cloning -->
+          <div class="column">
+            <img src="./images/soccer/BC.gif" alt="Soccer - Behavioral Cloning" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Behavioral Cloning (BC)</p>
+          </div>
+          <!-- Diffusion Policy -->
+          <div class="column">
+            <img src="./images/soccer/diffusion_policy.gif" alt="Soccer - Diffusion Policy" style="width: 100%; padding: 5px;">
+            <p class="subtitle">Diffusion Policy</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div>
-</div>
-
+  </div>
 </section>
 
 
+  
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
+    
+    <!-- Viper Section -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">Viper Experiments - Videos</h3>
+
+        <!-- Viper Gown -->
+        <div class="columns">
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/viper-gown-ours2249-2294.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Viper - Gown (Ours)</p>
+          </div>
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/viper-gown-dp3-1705-1729.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Viper - Gown (DP3)</p>
+          </div>
+        </div>
+
+        <!-- Viper Green -->
+        <div class="columns">
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/viper-green-ours-4525-4561.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Viper - Green Jacket (Ours)</p>
+          </div>
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/viper-green-dp3-3675-3719.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Viper - Green Jacket (DP3)</p>
+          </div>
+        </div>
+
+        <!-- Viper Purple -->
+        <div class="columns">
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/viper-purple-ours-1143-1190.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Viper - Purple Jacket (Ours)</p>
+          </div>
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/viper-purple-dp3-355-385.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Viper - Purple Jacket (DP3)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manikin Section -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">Manikin Experiments</h3>
+
+        <!-- Manikin Gown -->
+        <div class="columns">
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/manikin-gown-ours-1370-1423.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Manikin - Gown (Ours)</p>
+          </div>
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/manikin-gown-dp3-838-895.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Manikin - Gown (DP3)</p>
+          </div>
+        </div>
+
+        <!-- Manikin Green -->
+        <div class="columns">
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/manikin-green-ours-1276-1321.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Manikin - Green Jacket (Ours)</p>
+          </div>
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/manikin-green-dp3-1139-1182.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Manikin - Green Jacket (DP3)</p>
+          </div>
+        </div>
+
+        <!-- Manikin Purple -->
+        <div class="columns">
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/manikin-purple-ours-1970-2027.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Manikin - Purple Jacket (Ours)</p>
+          </div>
+          <div class="column">
+            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
+              <source src="./videos/manikin-purple-dp3-2480-2544.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle">Manikin - Purple Jacket (DP3)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+ 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
-         href="https://sirabas369.github.io/precise-control/">
+      <a class="icon-link" href="./ICRA25_ICRA_OfflineRewardLearning-5.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://sirabas369.github.io/precise-control/" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/user/repo" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
@@ -632,11 +602,6 @@
     </div>
   </div>
 </footer>
-
-<script src="./static/resize/imageMapResizer.min.js"></script>
-<script>
-  imageMapResize();
-  </script>
 
 </body>
 </html>
