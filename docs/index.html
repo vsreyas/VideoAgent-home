@@ -2,23 +2,20 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Real-World Offline Reinforcement Learning from Vision Language Model Feedback">
-  <meta name="keywords" content="Offline RL, Vision-Language Models, Reward Learning, Robotics">
+  <meta name="description" content="VideoAgent: Self-Improving Video Generation from Real-World Feedback">
+  <meta name="keywords" content="Video Generation, Reinforcement Learning, Robotics, Vision-Language Models, Video Refinement">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Offline RL-VLM-F</title>
+  <title>VideoAgent - Self-Improving Video Generation</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./images/einstein-logo.png">
+  <link rel="icon" href="./images/videoagent-logo.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -36,30 +33,26 @@
         <div class="column has-text-centered">
           <!-- Title and Conference Info -->
           <h1 class="title is-1 publication-title">
-            Real-World Offline Reinforcement Learning from Vision Language Model Feedback
+            VideoAgent: Self-Improving Video Generation
           </h1>
           <h2 class="title is-2 conference-title">
-            In Submission at LangRob Workshop, CORL-2024
+            Submitted to ICLR 2025
           </h2>
-    
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body has-text-centered">
       <video controls style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px; max-width: 100%;">
-        <source src="./videos/summary_vid.mp4" type="video/mp4">
+        <source src="./videos/videoagent_summary.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <h2 class="subtitle has-text-centered">
-        Combining preference based reward learning from Vision-Language Models with offline RL for policy learning from unlabeled datasets
+        Self-improving video plans via Vision-Language Model feedback for robotic manipulation and video generation tasks.
       </h2>
     </div>
   </div>
@@ -67,56 +60,31 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+    <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p style="font-size: 18px;">
-           Offline reinforcement learning can enable policy learning from pre-collected, sub-optimal datasets without online interactions. This makes it ideal for real-world robots and safety-critical scenarios, where collecting online data or expert demonstrations is slow, costly, and risky. However, most existing offline RL works assume the dataset is already labeled with the task rewards, a process that often requires significant human effort, especially when ground-truth states are hard to ascertain
-          (e.g., in the real-world). In this paper, we build on prior work, specifically RL-VLM-F, and propose a novel system that automatically generates reward labels for offline datasets using preference feedback from a vision-language model and a text description of the task. Our method then learns a policy using offline RL with the reward-labeled dataset. We demonstrate the
-          system’s applicability to a complex real-world robot-assisted dressing task, where we first learn a reward function using a vision-language model on a sub-optimal offline dataset, and then we use the learned reward to employ Implicit Q learning to
-          develop an effective dressing policy. Our method also performs well in simulation tasks involving the manipulation of rigid and deformable objects, and significantly outperform baselines such as behavior cloning and inverse RL. In summary, we propose a new system that enables automatic reward labeling and policy
-          learning from unlabeled, sub-optimal offline datasets.
+           Video generation has been used to generate visual plans for controlling robotic systems. Given an image observation and a language instruction, previous work has generated video plans which are then converted to robot controls to be executed. However, a major bottleneck in leveraging video generation for control lies in the quality of the generated videos, which often suffer from hallucinatory content and unrealistic physics, resulting in low task success when control actions are extracted from the generated videos. With this observation, we propose VideoAgent for self-improving generated video plans based on external feedback.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
   </div>
 </section>
 
-<!-- Add more sections for methodology, experiments, etc., as per the paper -->
-  <section class="section">
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">System</h2>
         <div class="content has-text-centered">
-          <img src="./images/Offline RL-VLM-F method.png" alt="Methods Figure" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px; max-width: 100%;">
+          <img src="./images/videoagent_method.png" alt="Methods Figure" style="border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px; max-width: 100%;">
           <p class="subtitle has-text-justified" style="margin-top: 10px; font-size: 16px; line-height: 1.5;">
-            <br><br><strong>Top:</strong> Our system, Offline RL-VLM-F, combines RL-VLM-F [1] with offline RL for effective policy learning from
-            unlabeled datasets. Given an unlabeled dataset without rewards, it first samples observation pairs, and queries a Vision
-            Language Model for preferences given a text description of the task. Using the preference labels, it then learns a reward
-            model via preference-based reward learning. The learned reward model is utilized to label the entire offline dataset. Finally,
-            it performs offline RL with the labeled dataset to learn a policy that solves the task. <br><br><strong>Bottom:</strong> We follow the same VLM
-            querying process as in RL-VLM-F. It consists of two stages: the first is an analysis stage that asks the VLM to analyze
-            and compare the two images; the second is the labeling stage, where the VLM generates the preference labels based on its
-            own analysis from the first stage and the task description.
+            <br><br><strong>VideoAgent</strong> iteratively refines generated video plans using feedback from a Vision-Language Model (VLM). After generating an initial video plan based on a language prompt, it queries the VLM for feedback, and refines the video plan before converting it into robot control actions. Successful execution in the real-world further improves the video generation model via online learning.
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-  
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Environments</h2>
-
-    <div class="columns is-centered">
-      <div class="column is-four-fifths has-text-centered">
-        <img src="./images/tasks.png" alt="Environments" style="width: 100%; border: 2px solid gray; border-radius: 15px; box-shadow: 0px 0px 10px #999; padding: 5px;">
       </div>
     </div>
   </div>
@@ -126,477 +94,62 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
 
-    <!-- Simulation Results Section -->
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <h3 class="title is-4">Simulation Results</h3>
         <div class="content">
-          <!-- Insert the simulation table here -->
           <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="font-size: 0.85em;">
             <thead>
               <tr>
                 <th>Task</th>
-                <th>Dataset</th>
-                <th>IQL-GT Reward</th>
-                <th style="background-color: #e0e0e0;">Offline RLVLMF (Ours)</th>
-                <th>IQL-Average Reward</th>
-                <th>Simple Behavioral Cloning</th>
-                <th>Diffusion Policy</th>
-                <th>GAIL</th>
+                <th>AVDC Baseline</th>
+                <th style="background-color: #e0e0e0;">VideoAgent (Ours)</th>
+                <th>VideoAgent-Online</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Open Drawer Task -->
               <tr>
-                <td rowspan="3">Open Drawer</td>
-                <td>Random</td>
-                <td>0.99</td>
-                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>0.91</strong></td>
-                <td>0.19</td>
-                <td>0.04</td>
-                <td>0.08</td>
-                <td>0.03</td>
+                <td>Open Drawer</td>
+                <td>30.7%</td>
+                <td style="background-color: #e0e0e0;"><strong>46.7%</strong></td>
+                <td>52.0%</td>
               </tr>
               <tr>
-                <td>Medium</td>
-                <td>0.95</td>
-                <td style="background-color: #e0e0e0;">0.85</td>
-                <td>0.84)</td>
-                <td><strong>0.88</strong></td>
-                <td>0.00</td>
-                <td>0.00</td>
+                <td>Close Drawer</td>
+                <td>28.0%</td>
+                <td style="background-color: #e0e0e0;"><strong>29.3%</strong></td>
+                <td>28.0%</td>
               </tr>
               <tr>
-                <td>Expert</td>
-                <td>0.99</td>
-                <td style="background-color: #e0e0e0;">0.99</td>
-                <td><strong>1.00</strong></td>
-                <td><strong>1.00</strong></td>
-                <td><strong>1.00</strong></td>
-                <td>0.07</td>
+                <td>Basketball</td>
+                <td>21.3%</td>
+                <td style="background-color: #e0e0e0;"><strong>18.7%</strong></td>
+                <td>21.3%</td>
               </tr>
-              
-              <!-- Soccer Task -->
-              <tr>
-                <td rowspan="3">Soccer</td>
-                <td>Random</td>
-                <td>0.30</td>
-                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>0.23</strong></td>
-                <td>0.11</td>
-                <td>0.11</td>
-                <td>0.13</td>
-                <td>0.01</td>
-              </tr>
-              <tr>
-                <td>Medium</td>
-                <td>0.19</td>
-                <td style="background-color: #e0e0e0;">0.15</td>
-                <td>0.19</td>
-                <td><strong>0.20</strong></td>
-                <td>0.10</td>
-                <td>0.00</td>
-              </tr>
-              <tr>
-                <td>Expert</td>
-                <td>0.42</td>
-                <td style="background-color: #e0e0e0;">0.42</td>
-                <td>0.41</td>
-                <td>0.41</td>
-                <td><strong>0.49</strong></td>
-                <td>0.04</td>
-              </tr>
-              
-              <!-- Cartpole Task -->
-              <tr>
-                <td rowspan="3">Cartpole</td>
-                <td>Random</td>
-                <td>-93.54</td>
-                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>-212.87</strong></td>
-                <td>-2537.62</td>
-                <td>-1816.98</td>
-                <td>-2063.65</td>
-                <td>-1683.31</td>
-              </tr>
-              <tr>
-                <td>Medium</td>
-                <td>-98.85</td>
-                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>-144.56</strong></td>
-                <td>-236.77</td>
-                <td>-165.16</td>
-                <td>-1875.05</td>
-                <td>-431.31</td>
-              </tr>
-              <tr>
-                <td>Expert</td>
-                <td>-83.93</td>
-                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>-78.77</strong></td>
-                <td>-81.46</td>
-                <td>-79.19</td>
-                <td>-1423.32</td>
-                <td>-433.64</td>
-              </tr>
-              
-              <!-- Straighten Rope Task -->
-              <tr>
-                <td rowspan="3">Straighten Rope</td>
-                <td>Random</td>
-                <td>20.93</td>
-                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>16.70</strong></td>
-                <td>8.71</td>
-                <td>12.73</td>
-                <td>12.01</td>
-                <td>11.75</td>
-              </tr>
-              <tr>
-                <td>Medium</td>
-                <td>14.34</td>
-                <td style="background-color: #e0e0e0;">14.56</td>
-                <td>14.15</td>
-                <td>14.17</td>
-                <td><strong>20.27</strong></td>
-                <td>19.88</td>
-              </tr>
-              <tr>
-                <td>Expert</td>
-                <td>20.58</td>
-                <td style="background-color: #e0e0e0; font-weight: 900;"><strong>20.54</strong></td>
-                <td>20.46</td>
-                <td><strong>20.54</strong></td>
-                <td>20.27</td>
-                <td>12.33</td>
-              </tr>
+              <!-- Add more rows for other tasks -->
             </tbody>
           </table>
         </div>
       </div>
     </div>
-
-  <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
-  <div class="column is-four-fifths">
-    <h3 class="title is-4">Real World Results</h3>
-
-    <!-- Images Row -->
-    <div class="columns">
-      <!-- Real World Viper Results -->
-      <div class="column">
-        <img src="./images/real_world_results_1.png" alt="Real World Result 1" style="width: 100%; border: 2px solid gray; border-radius: 10px; box-shadow: 0px 0px 10px #999; padding: 5px;">
-        <p class="subtitle">
-          Dressed ratio of our method and DP3 on the ViperX 300 S arm. As shown, our method achieves higher dressed ratios on all three garments.
-        </p>
-      </div>
-
-      <!-- Real World Manikin Results -->
-      <div class="column">
-        <img src="./images/real_world_results_2.png" alt="Real World Result 2" style="width: 100%; border: 2px solid gray; border-radius: 10px; box-shadow: 0px 0px 10px #999; padding: 5px;">
-        <p class="subtitle">
-          Dressed ratio of our method and DP3 on the manikin arm. Both methods achieve similarly high performance, as the manikin arm better represents a real person’s arm and holds an easier pose for dressing.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-</section>
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Simulation Experiments</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <p class="subtitle has-text-centered">
-          We show below the rollouts for four environments on the random dataset and compare it with the other baselines.
-        </p>
-      </div>
-    </div>
-
-    <!-- Drawer Task -->
-    <div class="columns is-centered">
-      <div class="column is-centered">
-        <h3 class="title is-4">Drawer Task</h3>
-        <div class="columns">
-          <!-- IQL GT Reward -->
-          <div class="column">
-            <img src="./images/drawer/IQL_gt_reward.gif" alt="Drawer - IQL GT Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL GT Reward</p>
-          </div>
-          <!-- IQL Offline RL-VLMF Ours -->
-          <div class="column">
-            <img src="./images/drawer/IQL_offline_rlvlmf_ours.gif" alt="Drawer - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Offline RL-VLMF (Ours)</p>
-          </div>
-          <!-- IQL Average Reward -->
-          <div class="column">
-            <img src="./images/drawer/IQL_average_reward.gif" alt="Drawer - IQL Average Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL Average Reward</p>
-          </div>
-          <!-- Behavioral Cloning -->
-          <div class="column">
-            <img src="./images/drawer/BC.gif" alt="Drawer - Behavioral Cloning" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Behavioral Cloning (BC)</p>
-          </div>
-          <!-- Diffusion Policy -->
-          <div class="column">
-            <img src="./images/drawer/diffusion_policy.gif" alt="Drawer - Diffusion Policy" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Diffusion Policy</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cartpole Task -->
-    <div class="columns is-centered">
-      <div class="column is-centered">
-        <h3 class="title is-4">Cartpole Task</h3>
-        <div class="columns">
-          <!-- IQL GT Reward -->
-          <div class="column">
-            <img src="./images/cartpole/IQL_gt_reward.gif" alt="Cartpole - IQL GT Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL GT Reward</p>
-          </div>
-          <!-- IQL Offline RL-VLMF Ours -->
-          <div class="column">
-            <img src="./images/cartpole/IQL_offline_rlvlmf_ours.gif" alt="Cartpole - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Offline RL-VLMF (Ours)</p>
-          </div>
-          <!-- IQL Average Reward -->
-          <div class="column">
-            <img src="./images/cartpole/IQL_average_reward.gif" alt="Cartpole - IQL Average Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL Average Reward</p>
-          </div>
-          <!-- Behavioral Cloning -->
-          <div class="column">
-            <img src="./images/cartpole/BC.gif" alt="Cartpole - Behavioral Cloning" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Behavioral Cloning (BC)</p>
-          </div>
-          <!-- Diffusion Policy -->
-          <div class="column">
-            <img src="./images/cartpole/diffusion_policy.gif" alt="Cartpole - Diffusion Policy" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Diffusion Policy</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rope Task -->
-    <div class="columns is-centered">
-      <div class="column is-centered">
-        <h3 class="title is-4">Rope Task</h3>
-        <div class="columns">
-          <!-- IQL GT Reward -->
-          <div class="column">
-            <img src="./images/rope/IQL_gt_reward.gif" alt="Rope - IQL GT Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL GT Reward</p>
-          </div>
-          <!-- IQL Offline RL-VLMF Ours -->
-          <div class="column">
-            <img src="./images/rope/IQL_offline_rlvlmf_ours.gif" alt="Rope - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Offline RL-VLMF (Ours)</p>
-          </div>
-          <!-- IQL Average Reward -->
-          <div class="column">
-            <img src="./images/rope/IQL_average_reward.gif" alt="Rope - IQL Average Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL Average Reward</p>
-          </div>
-          <!-- Behavioral Cloning -->
-          <div class="column">
-            <img src="./images/rope/BC.gif" alt="Rope - Behavioral Cloning" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Behavioral Cloning (BC)</p>
-          </div>
-          <!-- Diffusion Policy -->
-          <div class="column">
-            <img src="./images/rope/diffusion_policy.gif" alt="Rope - Diffusion Policy" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Diffusion Policy</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Soccer Task -->
-    <div class="columns is-centered">
-      <div class="column is-centered">
-        <h3 class="title is-4">Soccer Task</h3>
-        <div class="columns">
-          <!-- IQL GT Reward -->
-          <div class="column">
-            <img src="./images/soccer/IQL_gt_reward.gif" alt="Soccer - IQL GT Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL GT Reward</p>
-          </div>
-          <!-- IQL Offline RL-VLMF Ours -->
-          <div class="column">
-            <img src="./images/soccer/IQL_offline_rlvlmf_ours.gif" alt="Soccer - IQL Offline RL-VLMF (Ours)" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Offline RL-VLMF (Ours)</p>
-          </div>
-          <!-- IQL Average Reward -->
-          <div class="column">
-            <img src="./images/soccer/IQL_average_reward.gif" alt="Soccer - IQL Average Reward" style="width: 100%; padding: 5px;">
-            <p class="subtitle">IQL Average Reward</p>
-          </div>
-          <!-- Behavioral Cloning -->
-          <div class="column">
-            <img src="./images/soccer/BC.gif" alt="Soccer - Behavioral Cloning" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Behavioral Cloning (BC)</p>
-          </div>
-          <!-- Diffusion Policy -->
-          <div class="column">
-            <img src="./images/soccer/diffusion_policy.gif" alt="Soccer - Diffusion Policy" style="width: 100%; padding: 5px;">
-            <p class="subtitle">Diffusion Policy</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 
-  
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
-    
-    <!-- Viper Section -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-4">Viper Experiments - Videos</h3>
-
-        <!-- Viper Gown -->
-        <div class="columns">
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/viper-gown-ours2249-2294.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Viper - Gown (Ours)</p>
-          </div>
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/viper-gown-dp3-1705-1729.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Viper - Gown (DP3)</p>
-          </div>
-        </div>
-
-        <!-- Viper Green -->
-        <div class="columns">
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/viper-green-ours-4525-4561.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Viper - Green Jacket (Ours)</p>
-          </div>
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/viper-green-dp3-3675-3719.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Viper - Green Jacket (DP3)</p>
-          </div>
-        </div>
-
-        <!-- Viper Purple -->
-        <div class="columns">
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/viper-purple-ours-1143-1190.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Viper - Purple Jacket (Ours)</p>
-          </div>
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/viper-purple-dp3-355-385.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Viper - Purple Jacket (DP3)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Manikin Section -->
-    <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
-      <div class="column is-four-fifths">
-        <h3 class="title is-4">Manikin Experiments</h3>
-
-        <!-- Manikin Gown -->
-        <div class="columns">
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/manikin-gown-ours-1370-1423.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Manikin - Gown (Ours)</p>
-          </div>
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/manikin-gown-dp3-838-895.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Manikin - Gown (DP3)</p>
-          </div>
-        </div>
-
-        <!-- Manikin Green -->
-        <div class="columns">
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/manikin-green-ours-1276-1321.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Manikin - Green Jacket (Ours)</p>
-          </div>
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/manikin-green-dp3-1139-1182.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Manikin - Green Jacket (DP3)</p>
-          </div>
-        </div>
-
-        <!-- Manikin Purple -->
-        <div class="columns">
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/manikin-purple-ours-1970-2027.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Manikin - Purple Jacket (Ours)</p>
-          </div>
-          <div class="column">
-            <video controls style="width: 100%; border: 2px solid gray; border-radius: 10px; padding: 5px;">
-              <source src="./videos/manikin-purple-dp3-2480-2544.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="subtitle">Manikin - Purple Jacket (DP3)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
- 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="./ICRA25_ICRA_OfflineRewardLearning-5.pdf">
+      <a class="icon-link" href="./VideoAgent_ICLR_2025.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/user/repo" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/user/repo" class="external-link">
         <i class="fab fa-github"></i>
       </a>
     </div>
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p>
-            This website is based on the template from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> website under the <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
+          <p>This website is based on the <a href="https://github.com/user/repo">VideoAgent</a> submission to ICLR 2025.</p>
         </div>
       </div>
     </div>
